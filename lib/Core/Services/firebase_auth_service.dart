@@ -1,10 +1,18 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../../core/errors/exceptions.dart'; // سأوضح لك محتواه بالأسفل
+import '../../../../core/errors/exceptions.dart';
 
 class FirebaseAuthService {
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  Future<void> initGoogle() async {
+    await _googleSignIn.initialize(
+      serverClientId: 'YOUR_WEB_CLIENT_ID', // مهم للأندرويد
+    );
+  }
+
   Future<User> createAccountWithEmailAndPass({
     required String name,
     required String email,
@@ -15,7 +23,9 @@ class FirebaseAuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
       return credential.user!;
     } on FirebaseAuthException catch (e) {
-      log("FirebaseAuthExceptionCreateEmailAndPassword: e.code : ${e.code} - ${e.message}");
+      log(
+        "FirebaseAuthExceptionCreateEmailAndPassword: e.code : ${e.code} - ${e.message}",
+      );
       if (e.code == 'network-request-failed') {
         throw CustomException(
           'لا يوجد اتصال بالإنترنت. يرجى التحقق من اتصالك والمحاولة مرة أخرى.',
@@ -36,16 +46,21 @@ class FirebaseAuthService {
       throw CustomException('حدث خطأ ما . يرجى إعادة المحاولة ');
     }
   }
+
   Future<User> signInWithEmailAndPass({
     required String email,
     required String password,
   }) async {
     try {
-      final credential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       return credential.user!;
     } on FirebaseAuthException catch (e) {
-      log("FirebaseAuthExceptionSignInEmailAndPassword: e.code : ${e.code} - ${e.message}");
+      log(
+        "FirebaseAuthExceptionSignInEmailAndPassword: e.code : ${e.code} - ${e.message}",
+      );
       if (e.code == 'network-request-failed') {
         throw CustomException(
           'لا يوجد اتصال بالإنترنت. يرجى التحقق من اتصالك والمحاولة مرة أخرى.',
@@ -65,5 +80,29 @@ class FirebaseAuthService {
     } catch (e) {
       throw CustomException('حدث خطأ ما . يرجى إعادة المحاولة ');
     }
+  }
+
+  Future<User> signInWithGoogle() async {
+    await GoogleSignIn.instance.initialize(
+      serverClientId:
+          '689402195640-89rv4gmegf59t0d5ti87op96aaglvmr1.apps.googleusercontent.com',
+    );
+    // Trigger the authentication flow
+    final GoogleSignInAccount googleUser = await GoogleSignIn.instance
+        .authenticate();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    final userCredential = await FirebaseAuth.instance.signInWithCredential(
+      credential,
+    );
+    return userCredential.user!;
   }
 }

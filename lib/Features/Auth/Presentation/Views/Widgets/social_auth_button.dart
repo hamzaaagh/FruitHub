@@ -21,7 +21,7 @@ class SocialAuthButton extends StatelessWidget {
       ),
       child: ListTile(
         onTap: () {
-          // Logic هنا
+          onPressed();
         },
         // استخدام trailing أو leading يعتمد على رغبتك في مكان الأيقونة
         leading: SvgPicture.asset(image, width: 24, height: 24),

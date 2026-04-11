@@ -50,4 +50,17 @@ class AuthRepoImp implements AuthRepo {
       );
     }
   }
+  
+  @override
+  Future<Either<Failurs, UserEntity>> signInWithGoogle() async {
+    try {
+      var user = await firebaseAuthService.signInWithGoogle();
+      return Right(UserModel.fromFireBaseUser(user));
+    } catch (e) {
+      log("Error in signInWithGoogle: $e");
+      return Left(
+        ServerFailurs(message: 'حدث خطأ ما . يرجى إعادة المحاولة لاحقًا'),
+      );
+    }
+  }
 }

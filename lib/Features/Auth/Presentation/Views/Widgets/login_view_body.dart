@@ -21,11 +21,11 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
-late String email, password;
+  late String email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +36,16 @@ late String email, password;
           key: _formKey,
           child: Column(
             children: [
-              CustomTextFormField(hintText: "البريد الإلكتروني",onSaved: (value) => email = value!,),
+              CustomTextFormField(
+                hintText: "البريد الإلكتروني",
+                onSaved: (value) => email = value!,
+              ),
               const SizedBox(height: 16),
-              CustomTextFormField(hintText: "كلمة المرور", obscureText: true, onSaved: (value) => password = value!,),
+              CustomTextFormField(
+                hintText: "كلمة المرور",
+                obscureText: true,
+                onSaved: (value) => password = value!,
+              ),
               const SizedBox(height: 16),
               Align(
                 alignment: Alignment.centerLeft,
@@ -60,7 +67,10 @@ late String email, password;
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    context.read<SigninCubit>().signInWithEmailAndPass(email: email, password: password);
+                    context.read<SigninCubit>().signInWithEmailAndPass(
+                      email: email,
+                      password: password,
+                    );
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
@@ -81,7 +91,7 @@ late String email, password;
                 title: " تسجيل بواسطة جوجل",
                 image: Assets.assetsImagesGoogleIcon,
                 onPressed: () {
-                  // Logic هنا
+                  context.read<SigninCubit>().signInWithGoogle();
                 },
               ),
               const SizedBox(height: 16),
