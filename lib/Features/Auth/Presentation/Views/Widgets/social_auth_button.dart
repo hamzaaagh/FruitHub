@@ -23,7 +23,9 @@ class SocialAuthButton extends StatelessWidget {
         onTap: () {
           onPressed();
         },
-        // استخدام trailing أو leading يعتمد على رغبتك في مكان الأيقونة
+        splashColor: Colors.transparent, // لإخفاء تأثير انتشار اللون عند النقر
+        hoverColor: Colors
+            .transparent, // لإخفاء التأثير عند تمرير الماوس (في الويب أو الديسكتوب)
         leading: SvgPicture.asset(image, width: 24, height: 24),
         title: Text(
           title,

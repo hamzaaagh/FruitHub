@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../../core/errors/exceptions.dart';
@@ -75,8 +76,13 @@ class FirebaseAuthService {
         throw CustomException('المستخدم غير موجود');
       } else if (e.code == 'wrong-password') {
         throw CustomException('البريد الإلكتروني أو كلمة المرور غير صحيحة');
+      } else if (e.code == 'invalid-credential') {
+        throw CustomException('البريد الإلكتروني أو كلمة المرور غير صحيحة');
       }
-      throw CustomException('حدث خطأ ما . يرجى إعادة المحاولة لاحقًا');
+       else {
+        throw CustomException('حدث خطأ ما . يرجى إعادة المحاولة لاحقًا');
+      }
+      
     } catch (e) {
       throw CustomException('حدث خطأ ما . يرجى إعادة المحاولة ');
     }
@@ -105,4 +111,15 @@ class FirebaseAuthService {
     );
     return userCredential.user!;
   }
+  Future<User> signInWithFacebook() async {
+  
+  final LoginResult loginResult = await FacebookAuth.instance.login();
+
+  
+  final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+  final userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  return userCredential.user!;
+  
+}
 }

@@ -95,19 +95,19 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 },
               ),
               const SizedBox(height: 16),
-              SocialAuthButton(
-                title: "تسجيل بواسطة اّبل",
-                image: Assets.assetsImagesAppleIcon,
-                onPressed: () {
-                  // Logic هنا
-                },
-              ),
-              const SizedBox(height: 16),
+              // SocialAuthButton(
+              //   title: "تسجيل بواسطة اّبل",
+              //   image: Assets.assetsImagesAppleIcon,
+              //   onPressed: () {
+              //     // Logic هنا
+              //   },
+              // ),
+              // const SizedBox(height: 16),
               SocialAuthButton(
                 title: "تسجيل بواسطة فيسبوك",
                 image: Assets.assetsImagesFacebookIcon,
                 onPressed: () {
-                  // Logic هنا
+                  context.read<SigninCubit>().signInWithFacebook();
                 },
               ),
             ],
