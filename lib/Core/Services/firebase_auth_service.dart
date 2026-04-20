@@ -13,7 +13,22 @@ class FirebaseAuthService {
       serverClientId: 'YOUR_WEB_CLIENT_ID', // مهم للأندرويد
     );
   }
-
+Future deleteAccount() async {
+    try {
+      await FirebaseAuth.instance.currentUser?.delete();
+    } on FirebaseAuthException catch (e) {
+      log("FirebaseAuthExceptionDeleteAccount: e.code : ${e.code} - ${e.message}");
+      if (e.code == 'requires-recent-login') {
+        throw CustomException(
+          'يرجى إعادة تسجيل الدخول قبل حذف الحساب.',
+        );
+      } else {
+        throw CustomException('حدث خطأ ما . يرجى إعادة المحاولة لاحقًا');
+      }
+    } catch (e) {
+      throw CustomException('حدث خطأ ما . يرجى إعادة المحاولة ');
+    }
+  }
   Future<User> createAccountWithEmailAndPass({
     required String name,
     required String email,
