@@ -8,6 +8,8 @@ import 'package:fruit_app/Features/Auth/Presentation/Views/Widgets/login_view_bo
 import 'package:fruit_app/Features/Auth/Presentation/manager/signin_cubit/signin_cubit.dart';
 import 'package:fruit_app/Features/Auth/Presentation/manager/signin_cubit/signin_state.dart';
 import 'package:fruit_app/Features/Auth/domain/repos/auth_repo.dart';
+import 'package:fruit_app/Features/Home/Presentation/Views/home_view.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -35,7 +37,7 @@ class LoginViewBodyBlocConsumer extends StatelessWidget {
           buildSnackBar(context, state.message);
         } else if (state is SigninSuccess) {
           buildSnackBar(context, "تم تسجيل الدخول بنجاح ");
-          // يمكنك هنا إعادة التوجيه إلى صفحة أخرى أو تنفيذ أي إجراء آخر
+          context.push("/${HomeView.routeName}");
         }
       },
       builder: (context, state) {
