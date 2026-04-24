@@ -18,9 +18,9 @@ class BestSellerItem extends StatelessWidget {
       child: Stack(
         children: [
           // 1. محتوى الكارد الأساسي (مرتب عمودياً)
-          Padding(
-            padding: const EdgeInsets.all(12.0), // مسافة داخلية موحدة
-            child: Positioned.fill(
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,

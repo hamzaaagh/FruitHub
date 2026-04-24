@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_app/Core/Widgets/notifacation_widget.dart';
 import 'package:fruit_app/Core/utils/app_assets.dart';
-import 'package:fruit_app/Core/utils/app_colors.dart';
 import 'package:fruit_app/Core/utils/app_styles.dart';
 
 class HomeViewAppBar extends StatelessWidget {
-  const HomeViewAppBar({
-    super.key,
-  });
+  const HomeViewAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +21,7 @@ class HomeViewAppBar extends StatelessWidget {
         radius: 24,
         backgroundImage: AssetImage(Assets.assetsImagesProfile1),
       ),
-      trailing: Container(
-        height: 34,
-        width: 34,
-        decoration: BoxDecoration(
-          color: Color(0xffEEF8ED),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Center(
-          child: Icon(
-            Icons.notifications_none_outlined,
-            color: AppColors.secondarycolor,
-          ),
-        ),
-      ),
+      trailing: NotifacationWidget(),
     );
   }
 }
