@@ -11,7 +11,7 @@ class OfferBannerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return AspectRatio(
-      aspectRatio: 342 / 158,
+      aspectRatio: 16 / 9, // نسبة العرض إلى الارتفاع
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Stack(
@@ -25,8 +25,14 @@ class OfferBannerItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              width: 230, // عرض الصورة
-              child: SvgPicture.asset(Assets.assetsImagesVector3),
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: width * 0.5, // عرض الصورة
+              child: SvgPicture.asset(
+                Assets.assetsImagesVector3,
+                fit: BoxFit.fill,
+              ),
             ),
             Positioned(
               right: 20, // مسافة من الحافة اليمنى
@@ -34,7 +40,7 @@ class OfferBannerItem extends StatelessWidget {
               bottom: 0,
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 30),
-                width: width * 0.45, // مساحة النص
+                width: width, // مساحة النص
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start, // محاذاة لليمين
                   mainAxisAlignment:

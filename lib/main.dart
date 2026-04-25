@@ -23,6 +23,15 @@ class FruitHUP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      builder: (context, child) {
+        return GestureDetector(
+          onTap: () {
+            // This removes focus and hides the cursor/keyboard globally
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: child,
+        );
+      },
       locale: const Locale('ar'),
       supportedLocales: const [Locale('ar')],
       localizationsDelegates: [

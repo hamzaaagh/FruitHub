@@ -1,3 +1,5 @@
+import 'package:fruit_app/Features/Sections/Presentation/views/section_view.dart';
+import 'package:fruit_app/Layouts/main_layout.dart';
 import 'package:fruit_app/Core/utils/elastic_transition.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/forget_password_view.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/login_view.dart';
@@ -35,15 +37,48 @@ final GoRouter appRouter = GoRouter(
         return ElasticSlideTransitionPage(child: const ForgetPasswordView());
       },
     ),
-    GoRoute(
-      path: '/${HomeView.routeName}',
-      builder: (context, state) => const HomeView(),
-    ),
-    GoRoute(
-      path: '/${BestSellingView.routeName}',
-      pageBuilder: (context, state) {
-        return ElasticSlideTransitionPage(child: const BestSellingView());
+
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        // الـ ShellWrapper هو الذي يحتوي على الـ CustomNavigationBar
+        return MainLayout(navigationShell: navigationShell);
       },
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/${HomeView.routeName}',
+              builder: (context, state) => const HomeView(),
+            ),
+            GoRoute(
+              path: '/${BestSellingView.routeName}',
+              pageBuilder: (context, state) {
+                return ElasticSlideTransitionPage(
+                  child: const BestSellingView(),
+                );
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(routes: [
+           GoRoute(
+              path: '/${SectionView.routeName}',
+              builder: (context, state) => const SectionView(),
+            ),
+        ]),
+        StatefulShellBranch(routes: [
+           GoRoute(
+              path: '/${HomeView.routeName}',
+              builder: (context, state) => const HomeView(),
+            ),
+        ]),
+        StatefulShellBranch(routes: [
+           GoRoute(
+              path: '/${HomeView.routeName}',
+              builder: (context, state) => const HomeView(),
+            ),
+        ])
+      ],
     ),
   ],
 );
