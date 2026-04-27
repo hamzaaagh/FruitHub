@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -5,10 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruit_app/Core/Errors/failurs.dart';
 import 'package:fruit_app/Core/Services/data_base_service.dart';
 import 'package:fruit_app/Core/Services/firebase_auth_service.dart';
+import 'package:fruit_app/Core/Services/shared_prefrs_singelton.dart';
 import 'package:fruit_app/Core/utils/backend_endpoints.dart';
 import 'package:fruit_app/Features/Auth/Data/Models/user_model.dart';
 import 'package:fruit_app/Features/Auth/domain/entities/user_entity.dart';
 import 'package:fruit_app/Features/Auth/domain/repos/auth_repo.dart';
+import 'package:fruit_app/consts.dart';
 import 'package:fruit_app/core/errors/exceptions.dart';
 
 class AuthRepoImp implements AuthRepo {
@@ -60,6 +63,7 @@ class AuthRepoImp implements AuthRepo {
         password: password,
       );
       var userEntity = await getUserData(userId: user.uid);
+      await saveUserData(user: userEntity); // حفظ بيانات المستخدم في SharedPreferences
       return Right(userEntity);
     } on CustomException catch (e) {
       return Left(ServerFailurs(message: e.message));
@@ -121,7 +125,7 @@ class AuthRepoImp implements AuthRepo {
     try {
       await dataBaseService.addData(
         path: BackendEndpoints.addUserData,
-        data: user.toMap(),
+        data: UserModel.fromEntity(user).toMap(),
         documentId: user.password,
       );
     } catch (e) {
@@ -149,5 +153,11 @@ class AuthRepoImp implements AuthRepo {
       log("Error in getUserData: $e");
       throw CustomException('حدث خطأ ما . يرجى إعادة المحاولة لاحقًا');
     }
+  }
+
+  @override
+  Future saveUserData({required UserEntity user}) async {
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+    return await SharedPrefrsSingelton.setString(kUserData, jsonData);
   }
 }

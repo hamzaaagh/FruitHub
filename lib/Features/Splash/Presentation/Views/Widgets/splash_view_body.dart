@@ -21,7 +21,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void executeNavigation() async {
-    bool hasSeenOnBoarding = SharedPrefrsSingelton.getData(
+    bool hasSeenOnBoarding = SharedPrefrsSingelton.getbool(
       key: kIsSeenOnBoarding,
     );
     await Future.delayed(const Duration(seconds: 3));

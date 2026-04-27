@@ -55,7 +55,7 @@ class PageViewItem extends StatelessWidget {
                     },
                     child: GestureDetector(
                       onTap: () {
-                        SharedPrefrsSingelton.saveData(
+                        SharedPrefrsSingelton.setbool(
                           key: kIsSeenOnBoarding,
                           value: true,
                         );
@@ -132,7 +132,7 @@ class PageViewItem extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 40),
                         child: CustomButton(
                           onPressed: () {
-                            SharedPrefrsSingelton.saveData(
+                            SharedPrefrsSingelton.setbool(
                               key: kIsSeenOnBoarding,
                               value: true,
                             );
