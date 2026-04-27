@@ -7,6 +7,7 @@ import 'package:fruit_app/Core/functions/build_snackbar.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/Widgets/register_view_body.dart';
 import 'package:fruit_app/Features/Auth/Presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:fruit_app/Features/Auth/domain/repos/auth_repo.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -34,7 +35,7 @@ class RegisterViewBodyBlocConsumer extends StatelessWidget {
           buildSnackBar(context, state.message);
         } else if (state is SignupSuccess) {
           buildSnackBar(context, "تم إنشاء الحساب بنجاح ");
-          // يمكنك هنا إعادة التوجيه إلى صفحة أخرى أو تنفيذ أي إجراء آخر
+          context.pop();
         }
       },
       builder: (context, state) {

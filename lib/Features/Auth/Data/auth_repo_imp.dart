@@ -90,7 +90,7 @@ class AuthRepoImp implements AuthRepo {
       } else {
         await addUser(user: userEntity);
       }
-
+      await saveUserData(user: userEntity); // حفظ بيانات المستخدم في SharedPreferences
       return Right(userEntity);
     } catch (e) {
       await deleteAccount(user);
