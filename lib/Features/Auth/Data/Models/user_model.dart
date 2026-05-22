@@ -28,7 +28,7 @@ class UserModel extends UserEntity {
       password: entity.password,
     );
   }
-  
+
   toMap() {
     return {'name': name, 'email': email, 'password': password};
   }

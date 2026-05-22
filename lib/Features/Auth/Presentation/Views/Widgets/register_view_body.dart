@@ -52,11 +52,13 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 },
               ),
               const SizedBox(height: 16),
-              AcceptTermsWidget(onChanged: (value) {
-                setState(() {
-                  isTermsAccepted = value;
-                });
-              },),
+              AcceptTermsWidget(
+                onChanged: (value) {
+                  setState(() {
+                    isTermsAccepted = value;
+                  });
+                },
+              ),
               const SizedBox(height: 30),
               CustomButton(
                 isActive: isTermsAccepted,
@@ -95,5 +97,3 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     );
   }
 }
-
-

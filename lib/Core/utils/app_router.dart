@@ -1,5 +1,4 @@
-import 'package:fruit_app/Features/Sections/Presentation/views/section_view.dart';
-import 'package:fruit_app/Layouts/main_layout.dart';
+import 'package:fruit_app/Core/functions/build_page.dart';
 import 'package:fruit_app/Core/utils/elastic_transition.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/forget_password_view.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/login_view.dart';
@@ -7,7 +6,9 @@ import 'package:fruit_app/Features/Auth/Presentation/Views/register_view.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/best_selling_view.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/home_view.dart';
 import 'package:fruit_app/Features/OnBoarding/Presentation/Views/onboarding_view.dart';
+import 'package:fruit_app/Features/Sections/Presentation/views/section_view.dart';
 import 'package:fruit_app/Features/Splash/Presentation/Views/splash_view.dart';
+import 'package:fruit_app/Layouts/main_layout.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -53,31 +54,35 @@ final GoRouter appRouter = GoRouter(
             GoRoute(
               path: '/${BestSellingView.routeName}',
               pageBuilder: (context, state) {
-                return ElasticSlideTransitionPage(
-                  child: const BestSellingView(),
-                );
+                return buildPage(state, const BestSellingView());
               },
             ),
           ],
         ),
-        StatefulShellBranch(routes: [
-           GoRoute(
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
               path: '/${SectionView.routeName}',
               builder: (context, state) => const SectionView(),
             ),
-        ]),
-        StatefulShellBranch(routes: [
-           GoRoute(
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
               path: '/${HomeView.routeName}',
               builder: (context, state) => const HomeView(),
             ),
-        ]),
-        StatefulShellBranch(routes: [
-           GoRoute(
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
               path: '/${HomeView.routeName}',
               builder: (context, state) => const HomeView(),
             ),
-        ])
+          ],
+        ),
       ],
     ),
   ],
