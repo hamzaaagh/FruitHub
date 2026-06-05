@@ -1,11 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:fruit_app/Core/utils/app_assets.dart';
+import 'package:fruit_app/Core/entities/product_entity.dart';
 import 'package:fruit_app/Core/utils/app_colors.dart';
 import 'package:fruit_app/Core/utils/app_styles.dart';
-import 'package:svg_flutter/svg_flutter.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class BestSellerItem extends StatelessWidget {
-  const BestSellerItem({super.key});
+  const BestSellerItem({super.key, required this.product});
+  final ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +28,20 @@ class BestSellerItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                    child: SvgPicture.asset(
-                      //height: 150,
-                      //alignment: Alignment.center,
-                      Assets.assetsImagesPineapple,
-                      fit: BoxFit.fill,
+                    child: Skeleton.replace(
+                      height: 150,
+                      width: 150,
+                      child: CachedNetworkImage(
+                        imageUrl: product.imageUrl!,
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
                     ),
                   ),
-                  Spacer(),
-                  //const SizedBox(height: 12), // مسافة
+                  //   Spacer(),
+                  const SizedBox(height: 12), // مسافة
                   // اسم المنتج (بطيخ)
-                  const Text(
-                    'بطيخ',
+                  Text(
+                    product.name,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -51,7 +55,7 @@ class BestSellerItem extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '20 جنية ',
+                          text: '${product.price.toStringAsFixed(2)} ليرة ',
                           style: AppStyles.bold14.copyWith(
                             color: AppColors.accentColor,
                           ), // اللون الأخضر الغامق

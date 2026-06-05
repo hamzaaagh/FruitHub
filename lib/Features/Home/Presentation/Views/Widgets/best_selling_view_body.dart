@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_app/Features/Home/Presentation/Views/Widgets/items_grid_view.dart';
+import 'package:fruit_app/Features/Home/Presentation/Views/Widgets/items_gride_view_bloc_builder.dart';
 
 class BestSellingViewBody extends StatelessWidget {
   const BestSellingViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: [ItemsGridView(count: 10)]);
+    return CustomScrollView(slivers: [ItemsGridViewBlockBuilder()]);
   }
 }

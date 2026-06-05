@@ -1,5 +1,7 @@
 import 'package:fruit_app/Core/Services/data_base_service.dart';
 import 'package:fruit_app/Core/Services/fireStore_service.dart';
+import 'package:fruit_app/Core/repos/product_repo.dart';
+import 'package:fruit_app/Core/repos/product_repo_impl.dart';
 import 'package:fruit_app/Features/Auth/Data/auth_repo_imp.dart';
 import 'package:fruit_app/Core/Services/firebase_auth_service.dart'; // تأكد من الحروف الصغيرة
 
@@ -20,4 +22,5 @@ void setupServiceLoacator() {
       dataBaseService: getIt<DataBaseService>(), // تأكد من تسجيل DataBaseService أيضاً
     ),
   );
+  getIt.registerSingleton<ProductRepo>(ProductRepoImpl(dataBaseService: getIt<DataBaseService>()));
 }

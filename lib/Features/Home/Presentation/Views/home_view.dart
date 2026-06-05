@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_app/Core/Cubits/cubit/product_cubit.dart';
+import 'package:fruit_app/Core/Services/service_locator.dart';
+import 'package:fruit_app/Core/repos/product_repo.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/Widgets/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,7 +19,10 @@ class HomeView extends StatelessWidget {
             top: 16,
             bottom: 8,
           ),
-          child: HomeViewBody(),
+          child: BlocProvider(
+            create: (context) => ProductCubit(getIt<ProductRepo>()),
+            child: HomeViewBody(),
+          ),
         ),
       ),
     );
