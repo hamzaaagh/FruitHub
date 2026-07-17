@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:fruit_app/Core/entities/product_entity.dart';
 import 'package:fruit_app/Core/functions/build_page.dart';
 import 'package:fruit_app/Core/utils/elastic_transition.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/forget_password_view.dart';
@@ -6,6 +8,7 @@ import 'package:fruit_app/Features/Auth/Presentation/Views/register_view.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/best_selling_view.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/home_view.dart';
 import 'package:fruit_app/Features/OnBoarding/Presentation/Views/onboarding_view.dart';
+import 'package:fruit_app/Features/Product_Details/presentation/views/product_details_view.dart';
 import 'package:fruit_app/Features/Sections/Presentation/views/section_view.dart';
 import 'package:fruit_app/Features/Splash/Presentation/Views/splash_view.dart';
 import 'package:fruit_app/Layouts/main_layout.dart';
@@ -55,6 +58,18 @@ final GoRouter appRouter = GoRouter(
               path: '/${BestSellingView.routeName}',
               pageBuilder: (context, state) {
                 return buildPage(state, const BestSellingView());
+              },
+            ),
+            GoRoute(
+              path: '/${ProductDetailsView.routeName}',
+              // تغيير builder إلى pageBuilder هنا حل المشكلة تماماً
+              pageBuilder: (context, state) {
+                final product = state.extra as ProductEntity;
+
+                return CupertinoPage(
+                  key: state.pageKey,
+                  child: ProductDetailsView(product: product),
+                );
               },
             ),
           ],
