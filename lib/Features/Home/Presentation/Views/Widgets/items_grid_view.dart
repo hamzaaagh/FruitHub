@@ -10,7 +10,7 @@ class ItemsGridView extends StatelessWidget {
     return SliverGrid.builder(
       itemCount: items.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: 190 / 214,
+        childAspectRatio: 0.7,
         crossAxisCount: 2,
         mainAxisSpacing: 16,
         crossAxisSpacing: 16,

@@ -14,98 +14,115 @@ class BestSellerItem extends StatelessWidget {
     // استخدمت Container مع BoxDecoration لعمل الحواف المنحنية والخلفية الرمادية الفاتحة
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFFF3F5F7),
+        color: const Color(0xFFF3F5F7),
         borderRadius: BorderRadius.circular(16), // انحناء الحواف الخارجية
       ),
+      // 👈 تم تعديل الـ Stack ليبقى فقط لأيقونة القلب العائمة
       child: Stack(
         children: [
-          // 1. محتوى الكارد الأساسي (مرتب عمودياً)
-          Positioned.fill(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
+          // 1. محتوى الكارد الأساسي (مرتب عمودياً ومحمي بالكامل)
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // جعل الصورة مرنة تأخذ المساحة المتاحة بالكامل دون دفع العناصر الأخرى للأسفل
+                Expanded(
+                  child: Center(
                     child: Skeleton.replace(
-                      height: 150,
-                      width: 150,
                       child: CachedNetworkImage(
                         imageUrl: product.imageUrl!,
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        fit: BoxFit.contain, // يضمن احتواء الصورة بالكامل
+                        placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                     ),
                   ),
-                  //   Spacer(),
-                  const SizedBox(height: 12), // مسافة
-                  // اسم المنتج (بطيخ)
-                  Text(
-                    product.name,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    textAlign: TextAlign.right,
-                  ),
-                  const SizedBox(height: 4), // مسافة صغيرة
+                ),
 
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '${product.price.toStringAsFixed(2)} ليرة ',
-                          style: AppStyles.bold14.copyWith(
-                            color: AppColors.accentColor,
-                          ), // اللون الأخضر الغامق
-                        ),
-                        TextSpan(
-                          text: '/ الكيلو',
-                          style: AppStyles.regular12.copyWith(
-                            color: AppColors.accentColor,
-                          ), // اللون الرمادي
-                        ),
-                      ],
-                    ),
-                    textAlign: TextAlign.right,
+                const SizedBox(height: 8), // مسافة فاصلة بين الصورة والنصوص
+                // اسم المنتج
+                Text(
+                  product.name,
+                  maxLines: 1, // لمنع حدوث overflow إذا كان الاسم طويلاً جداً
+                  overflow: TextOverflow
+                      .ellipsis, // يضع ثلاث نقاط (...) إذا طال الاسم
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
-                ],
-              ),
+                  textAlign: TextAlign.right,
+                ),
+
+                const SizedBox(height: 4), // مسافة صغيرة جداً
+                // 👈 الجديد هنا: الصف السفلي الذي يحتوي على السعر وزر الإضافة
+                Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween, // يباعد بين السعر والزر
+                  crossAxisAlignment:
+                      CrossAxisAlignment.end, // يحاذيهم على السطر السفلي
+                  children: [
+                    // السعر
+                    Flexible(
+                      // يضمن عدم تداخل النص إذا كان السعر طويلاً جداً
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '${product.price.toStringAsFixed(2)} ليرة ',
+                              style: AppStyles.bold14.copyWith(
+                                color: AppColors.accentColor,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '/ الكيلو',
+                              style: AppStyles.regular12.copyWith(
+                                color: AppColors.accentColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+
+                    // 👈 تم نقل زر الإضافة (علامة الزائد) إلى هنا داخل الـ Row
+                    Container(
+                      width: 36,
+                      height: 36,
+                      decoration: const BoxDecoration(
+                        color: AppColors.primarycolor, // اللون الأخضر الغامق
+                        shape: BoxShape.circle, // شكل دائري
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white, // لون علامة الزائد أبيض
+                        size: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
 
-          // 2. العناصر العائمة (أيقونة القلب وزر الإضافة)
+          // 2. العناصر العائمة (بقي القلب فقط)
 
-          // أيقونة القلب (المفضلة) - أعلى اليسار
+          // أيقونة القلب (المفضلة) - أعلى اليسار (تبقى عائمة لأنها لا تتداخل مع النصوص)
           Positioned(
             top: 8,
             right: 8,
             child: Icon(
-              Icons.favorite_border, // أيقونة قلب غير ممتلئ
-              color: Colors.black.withOpacity(0.5), // لون رمادي شفاف قليلاً
+              Icons.favorite_border,
+              color: Colors.black.withOpacity(0.5),
               size: 20,
             ),
           ),
 
-          // زر الإضافة (علامة الزائد) - أسفل اليمين
-          Positioned(
-            bottom: 12,
-            left: 12,
-            child: Container(
-              width: 36,
-              height: 36,
-              decoration: const BoxDecoration(
-                color: AppColors.primarycolor, // اللون الأخضر الغامق
-                shape: BoxShape.circle, // شكل دائري
-              ),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white, // لون علامة الزائد أبيض
-                size: 20,
-              ),
-            ),
-          ),
+          // 👈 تم حذف الـ Positioned الخاص بزر الإضافة من هنا
         ],
       ),
     );

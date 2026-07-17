@@ -1,4 +1,5 @@
 import 'package:fruit_app/Core/entities/product_entity.dart';
+import 'package:fruit_app/Core/utils/app_assets.dart';
 
 ProductEntity getDummyProduct() {
   return ProductEntity(
@@ -6,14 +7,14 @@ ProductEntity getDummyProduct() {
     name: "بطيخ",
     price: 20,
     description: "description",
-    imageUrl: "assets/images/fruit.svg",
+    imageUrl: Assets.assetsImagesPineapple,
     isFeatured: true,
     expirationMonths: 12,
     numberOfCalories: 29,
     unitAmounts: 20,
-  ); 
-
+  );
 }
-List <ProductEntity> getDummyProducts(int count) {
+
+List<ProductEntity> getDummyProducts(int count) {
   return List.generate(count, (index) => getDummyProduct());
 }
