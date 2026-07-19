@@ -5,6 +5,7 @@ import 'package:fruit_app/Core/utils/elastic_transition.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/forget_password_view.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/login_view.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/register_view.dart';
+import 'package:fruit_app/Features/Cart/presentation/view/cart_view.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/best_selling_view.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/home_view.dart';
 import 'package:fruit_app/Features/OnBoarding/Presentation/Views/onboarding_view.dart';
@@ -85,8 +86,8 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/${HomeView.routeName}',
-              builder: (context, state) => const HomeView(),
+              path: '/${CartView.routeName}',
+              builder: (context, state) => const CartView() ,
             ),
           ],
         ),
