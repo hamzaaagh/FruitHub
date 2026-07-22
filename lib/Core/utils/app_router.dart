@@ -10,6 +10,7 @@ import 'package:fruit_app/Features/Home/Presentation/Views/best_selling_view.dar
 import 'package:fruit_app/Features/Home/Presentation/Views/home_view.dart';
 import 'package:fruit_app/Features/OnBoarding/Presentation/Views/onboarding_view.dart';
 import 'package:fruit_app/Features/Product_Details/presentation/views/product_details_view.dart';
+import 'package:fruit_app/Features/Profile/presentation/view/profile_view.dart';
 import 'package:fruit_app/Features/Sections/Presentation/views/section_view.dart';
 import 'package:fruit_app/Features/Splash/Presentation/Views/splash_view.dart';
 import 'package:fruit_app/Layouts/main_layout.dart';
@@ -94,8 +95,8 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/${HomeView.routeName}',
-              builder: (context, state) => const HomeView(),
+              path: '/${ProfileView.routeName}',
+              builder: (context, state) => const ProfileView() ,
             ),
           ],
         ),

@@ -10,6 +10,7 @@ import 'package:fruit_app/Features/Sections/Presentation/views/widgets/section_v
 class SectionView extends StatelessWidget {
   const SectionView({super.key});
   static const String routeName = 'SectionView';
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
