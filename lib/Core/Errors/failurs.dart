@@ -3,5 +3,5 @@ abstract class Failurs {
   Failurs({required this.message});
 } 
 class ServerFailurs extends Failurs {
-  ServerFailurs({required String message}) : super(message: message);
+  ServerFailurs( {required String message}) : super(message: message);
 }

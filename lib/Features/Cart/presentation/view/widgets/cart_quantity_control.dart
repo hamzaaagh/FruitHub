@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
-class CartQuantityController extends StatelessWidget {
-  final int quantity;
+class CartQuantityControl extends StatelessWidget {
+  final num quantity;
+  final VoidCallback onIncrease;
+  final VoidCallback onDecrease;
 
-  const CartQuantityController({super.key, required this.quantity});
+  const CartQuantityControl({
+    super.key,
+    required this.quantity,
+    required this.onIncrease,
+    required this.onDecrease,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,7 @@ class CartQuantityController extends StatelessWidget {
           icon: Icons.remove,
           iconColor: const Color(0xff8E8E93),
           backgroundColor: const Color(0xffF2F2F7),
-          onPressed: () {},
+          onPressed: onDecrease,
         ),
         const SizedBox(width: 16),
         Text(
@@ -30,7 +37,7 @@ class CartQuantityController extends StatelessWidget {
           icon: Icons.add,
           iconColor: Colors.white,
           backgroundColor: const Color(0xff1B5E3A),
-          onPressed: () {},
+          onPressed: onIncrease,
         ),
       ],
     );

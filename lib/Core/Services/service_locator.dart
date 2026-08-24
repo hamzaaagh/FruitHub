@@ -6,6 +6,8 @@ import 'package:fruit_app/Features/Auth/Data/auth_repo_imp.dart';
 import 'package:fruit_app/Core/Services/firebase_auth_service.dart'; // تأكد من الحروف الصغيرة
 
 import 'package:fruit_app/Features/Auth/domain/repos/auth_repo.dart';
+import 'package:fruit_app/Features/Cart/data/cart_repo_impl.dart';
+import 'package:fruit_app/Features/Cart/domain/cart_repo.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -23,4 +25,5 @@ void setupServiceLoacator() {
     ),
   );
   getIt.registerSingleton<ProductRepo>(ProductRepoImpl(dataBaseService: getIt<DataBaseService>()));
+   getIt.registerSingleton<CartRepo>(CartRepoImpl(dataBaseService: getIt<DataBaseService>()));
 }

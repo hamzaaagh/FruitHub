@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_app/Features/Cart/domain/entities/cart_item_entity.dart';
 import 'package:fruit_app/Features/Cart/presentation/view/widgets/cart_item.dart';
 
 class CartItemList extends StatelessWidget {
-  const CartItemList({super.key});
+  const CartItemList({super.key, required this.cartItems});
+
+  final List<CartItemEntity> cartItems;
 
   @override
   Widget build(BuildContext context) {
-    const itemCount = 3; // يمكنك ربطها بالـ List الحقيقية لاحقاً
+    if (cartItems.isEmpty) {
+      return const SliverToBoxAdapter(child: SizedBox.shrink());
+    }
 
     return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       sliver: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            // لمحاكاة الـ separatorBuilder في الـ ListView
-            if (index.isOdd) {
-              return const Divider(
-                color: Color(0xffF1F1F5),
-                height: 32,
-                thickness: 1,
-              );
-            }
+        delegate: SliverChildBuilderDelegate((context, index) {
+          // إضافة فاصل بين العناصر
+          if (index.isOdd) {
+            return const Divider(
+              color: Color(0xffF1F1F5),
+              height: 32,
+              thickness: 1,
+            );
+          }
 
-            return const CartItem();
-          },
-          // نضرب في 2 ونطرح 1 لتمثيل العناصر مع الفواصل بشكل دقيق
-          childCount: itemCount > 0 ? (itemCount * 2) - 1 : 0,
-        ),
+          // حساب الفهرس الحقيقي للعنصر في القائمة
+          final itemIndex = index ~/ 2;
+          final cartItem = cartItems[itemIndex];
+
+          return CartItem(cartItem: cartItem);
+        }, childCount: (cartItems.length * 2) - 1),
       ),
     );
   }
