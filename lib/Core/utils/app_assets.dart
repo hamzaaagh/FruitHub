@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-
+  
   /// Assets for assetsImagesAppIcon
   /// assets/images/App_icon.png
   static const String assetsImagesAppIcon = "assets/images/App_icon.png";
@@ -10,14 +10,21 @@ class Assets {
   /// assets/images/apple_icon.svg
   static const String assetsImagesAppleIcon = "assets/images/apple_icon.svg";
 
+  /// Assets for assetsImagesAvocado
+  /// assets/images/Avocado.svg
+  static const String assetsImagesAvocado = "assets/images/Avocado.svg";
+
+  /// Assets for assetsImagesBitmap
+  /// assets/images/Bitmap.svg
+  static const String assetsImagesBitmap = "assets/images/Bitmap.svg";
+
   /// Assets for assetsImagesCircels
   /// assets/images/Circels.svg
   static const String assetsImagesCircels = "assets/images/Circels.svg";
 
   /// Assets for assetsImagesFacebookIcon
   /// assets/images/facebook_icon.svg
-  static const String assetsImagesFacebookIcon =
-      "assets/images/facebook_icon.svg";
+  static const String assetsImagesFacebookIcon = "assets/images/facebook_icon.svg";
 
   /// Assets for assetsImagesFruit
   /// assets/images/fruit.png
@@ -25,8 +32,7 @@ class Assets {
 
   /// Assets for assetsImagesFruit basket
   /// assets/images/fruit basket.svg
-  static const String assetsImagesFruitbasket =
-      "assets/images/fruit basket.svg";
+  static const String assetsImagesFruit basket = "assets/images/fruit basket.svg";
 
   /// Assets for assetsImagesFruit1
   /// assets/images/fruit1.jpg
@@ -56,6 +62,10 @@ class Assets {
   /// assets/images/profile1.png
   static const String assetsImagesProfile1 = "assets/images/profile1.png";
 
+  /// Assets for assetsImagesStrawbery
+  /// assets/images/strawbery.svg
+  static const String assetsImagesStrawbery = "assets/images/strawbery.svg";
+
   /// Assets for assetsImagesVector
   /// assets/images/Vector.svg
   static const String assetsImagesVector = "assets/images/Vector.svg";
@@ -68,3 +78,4 @@ class Assets {
   /// assets/images/watermelon.svg
   static const String assetsImagesWatermelon = "assets/images/watermelon.svg";
 }
+

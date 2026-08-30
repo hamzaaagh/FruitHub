@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,11 @@ void main() async {
   setupServiceLoacator();
   Bloc.observer = CustomBlocObserver();
   await SharedPrefrsSingelton.init();
-  runApp(const FruitHUP());
+  
+  runApp(DevicePreview(
+    enabled: true,
+    builder: (context) => const FruitHUP(),
+  ));
 }
 
 class FruitHUP extends StatelessWidget {

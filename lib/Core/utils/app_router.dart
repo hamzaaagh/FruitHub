@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_app/Core/entities/product_entity.dart';
 import 'package:fruit_app/Core/functions/build_page.dart';
 import 'package:fruit_app/Core/utils/elastic_transition.dart';
@@ -6,6 +7,8 @@ import 'package:fruit_app/Features/Auth/Presentation/Views/forget_password_view.
 import 'package:fruit_app/Features/Auth/Presentation/Views/login_view.dart';
 import 'package:fruit_app/Features/Auth/Presentation/Views/register_view.dart';
 import 'package:fruit_app/Features/Cart/presentation/view/cart_view.dart';
+import 'package:fruit_app/Features/CheckOut/presentation/manager/checkout_cubit/checkout_cubit.dart';
+import 'package:fruit_app/Features/CheckOut/presentation/view/checkout_view.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/best_selling_view.dart';
 import 'package:fruit_app/Features/Home/Presentation/Views/home_view.dart';
 import 'package:fruit_app/Features/OnBoarding/Presentation/Views/onboarding_view.dart';
@@ -88,7 +91,14 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/${CartView.routeName}',
-              builder: (context, state) => const CartView() ,
+              builder: (context, state) => const CartView(),
+            ),
+            GoRoute(
+              path: '/${CheckOutView.routeName}',
+              builder: (context, state) => BlocProvider(
+                create: (context) => CheckoutCubit(),
+                child: const CheckOutView(),
+              ),
             ),
           ],
         ),
@@ -96,7 +106,7 @@ final GoRouter appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/${ProfileView.routeName}',
-              builder: (context, state) => const ProfileView() ,
+              builder: (context, state) => const ProfileView(),
             ),
           ],
         ),

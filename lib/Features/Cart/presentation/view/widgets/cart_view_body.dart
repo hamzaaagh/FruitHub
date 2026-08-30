@@ -11,6 +11,8 @@ import 'package:fruit_app/Features/Cart/presentation/manager/cart_item_action_cu
 import 'package:fruit_app/Features/Cart/presentation/manager/cart_item_action_cubit/cart_item_action_state.dart';
 import 'package:fruit_app/Features/Cart/presentation/view/widgets/cart_header.dart';
 import 'package:fruit_app/Features/Cart/presentation/view/widgets/cart_items_list.dart';
+import 'package:fruit_app/Features/CheckOut/presentation/view/checkout_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CartViewBody extends StatefulWidget {
@@ -36,11 +38,11 @@ class _CartViewBodyState extends State<CartViewBody> {
       listener: (context, state) {
         if (state is CartItemAddedSuccess) {
           context.read<CartCubit>().addLocalItem(state.cartItem);
-          buildSnackBar(context, 'تمت إضافة المنتج إلى السلة بنجاح',);
+          buildSnackBar(context, 'تمت إضافة المنتج إلى السلة بنجاح');
         } else if (state is CartItemDeletedSuccess) {
-          buildSnackBar(context, 'تم حذف المنتج من السلة بنجاح',);
+          buildSnackBar(context, 'تم حذف المنتج من السلة بنجاح');
         } else if (state is CartItemActionFailure) {
-          buildSnackBar(context, state.message,);
+          buildSnackBar(context, state.message);
           // في حال فشل الحذف في السيرفر، نعيد جلب العناصر لضمان مزامنة الواجهة
           final uId = FirebaseAuth.instance.currentUser?.uid;
           if (uId != null) {
@@ -91,7 +93,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                       onPressed: (cartCubit.cartItems.isEmpty || isLoading)
                           ? null
                           : () {
-                              // الانتقال لصفحة Checkout
+                              context.push('/${CheckOutView.routeName}');
                             },
                     ),
                   ),
