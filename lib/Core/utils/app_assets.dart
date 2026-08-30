@@ -10,13 +10,9 @@ class Assets {
   /// assets/images/apple_icon.svg
   static const String assetsImagesAppleIcon = "assets/images/apple_icon.svg";
 
-  /// Assets for assetsImagesAvocado
-  /// assets/images/Avocado.svg
-  static const String assetsImagesAvocado = "assets/images/Avocado.svg";
-
   /// Assets for assetsImagesBitmap
-  /// assets/images/Bitmap.svg
-  static const String assetsImagesBitmap = "assets/images/Bitmap.svg";
+  /// assets/images/Bitmap.png
+  static const String assetsImagesBitmap = "assets/images/Bitmap.png";
 
   /// Assets for assetsImagesCircels
   /// assets/images/Circels.svg
@@ -32,7 +28,7 @@ class Assets {
 
   /// Assets for assetsImagesFruit basket
   /// assets/images/fruit basket.svg
-  static const String assetsImagesFruit basket = "assets/images/fruit basket.svg";
+  static const String assetsImagesFruitbasket = "assets/images/fruit basket.svg";
 
   /// Assets for assetsImagesFruit1
   /// assets/images/fruit1.jpg
@@ -63,8 +59,8 @@ class Assets {
   static const String assetsImagesProfile1 = "assets/images/profile1.png";
 
   /// Assets for assetsImagesStrawbery
-  /// assets/images/strawbery.svg
-  static const String assetsImagesStrawbery = "assets/images/strawbery.svg";
+  /// assets/images/strawbery.png
+  static const String assetsImagesStrawbery = "assets/images/strawbery.png";
 
   /// Assets for assetsImagesVector
   /// assets/images/Vector.svg
@@ -75,7 +71,7 @@ class Assets {
   static const String assetsImagesVector3 = "assets/images/vector3.svg";
 
   /// Assets for assetsImagesWatermelon
-  /// assets/images/watermelon.svg
-  static const String assetsImagesWatermelon = "assets/images/watermelon.svg";
+  /// assets/images/watermelon.png
+  static const String assetsImagesWatermelon = "assets/images/watermelon.png";
 }
 

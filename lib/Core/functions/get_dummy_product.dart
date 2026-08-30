@@ -5,7 +5,7 @@ import 'package:fruit_app/Features/Cart/domain/entities/cart_item_entity.dart';
 ProductEntity getDummyProduct() {
   return ProductEntity(
     code: "code",
-    name: "بطيخ",
+    name: "أناناس",
     price: 20,
     description: "description",
     imageUrl: Assets.assetsImagesPineapple,
@@ -15,15 +15,18 @@ ProductEntity getDummyProduct() {
     unitAmounts: 20,
   );
 }
+
 CartItemEntity getDummyCartItem() {
-  return CartItemEntity(
-    productEntity: getDummyProduct(),
-    count: 1,
-  );
+  return CartItemEntity(productEntity: getDummyProduct(), count: 1);
 }
+
+
+ 
+
 List<ProductEntity> getDummyProducts(int count) {
   return List.generate(count, (index) => getDummyProduct());
 }
+
 List<CartItemEntity> getDummyCartItems(int count) {
   return List.generate(count, (index) => getDummyCartItem());
 }
