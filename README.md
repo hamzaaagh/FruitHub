@@ -21,21 +21,22 @@
 
 The application is engineered prioritizing scalability, maintainability, and code testability. It adheres strictly to **Clean Architecture** principles, keeping a clear separation of concerns across Data, Domain, and Presentation layers.
 
-> 🔗 **Looking for the Management System?** Check out the [FruitHUP Admin Dashboard Repository](https://github.com/YOUR_USERNAME/FruitHUP-Admin) for product management and order controls.
+> 🔗 **Looking for the Management System?** Check out the [FruitHUP Admin Dashboard Repository](https://github.com/hamzaaagh/FruitHup_Admin_Dashboard) for product management and order controls.
 
 ---
 
 ## 📱 User Interface & Showcase
 
 <p align="center">
-  <img src="screenshots/screen1.jpg" width="130" alt="Onboarding Screen" /> &nbsp;
-  <img src="screenshots/screen2.jpg" width="130" alt="Authentication Screen" /> &nbsp;
-  <img src="screenshots/screen3.jpg" width="130" alt="Home Screen" /> &nbsp;
-  <img src="screenshots/screen4.jpg" width="130" alt="Product Details" /> &nbsp;
-  <img src="screenshots/screen5.jpg" width="130" alt="Cart Screen" /> &nbsp;
-  <img src="screenshots/screen6.jpg" width="130" alt="Checkout Flow" />
+  <img src="screenshots/screen1.jpg" width="120" alt="Onboarding Screen" /> &nbsp;
+  <img src="screenshots/screen2.jpg" width="120" alt="Onboarding" /> &nbsp;
+  <img src="screenshots/screen3.jpg" width="120" alt="Authentication Screen" /> &nbsp;
+  <img src="screenshots/screen4.jpg" width="120" alt="Home" /> &nbsp;
+  <img src="screenshots/screen5.jpg" width="120" alt="Cart Screen" /> &nbsp;
+  <img src="screenshots/screen6.jpg" width="120" alt="Checkout Flow" /> &nbsp;
+  <img src="screenshots/screen7.jpg" width="120" alt="Profile Screen" /> &nbsp;
+  <img src="screenshots/screen8.jpg" width="120" alt="Product Details" />
 </p>
-
 
 ---
 
@@ -43,27 +44,28 @@ The application is engineered prioritizing scalability, maintainability, and cod
 
 The core design follows enterprise-level mobile architecture standards:
 
-* **Framework:** [Flutter](https://flutter.dev/) (Dart)
-* **Architecture:** Clean Architecture (Data, Domain, Presentation layer separation)
-* **State Management:** BLoC / Cubit pattern for predictable state handling
-* **Navigation & Routing:** GoRouter for declarative routing and deep linking support
-* **Dependency Injection:** GetIt service locator for clean dependency injection
-* **Backend & Cloud Services:**
+- **Framework:** [Flutter](https://flutter.dev/) (Dart)
+- **Architecture:** Clean Architecture (Data, Domain, Presentation layer separation)
+- **State Management:** BLoC / Cubit pattern for predictable state handling
+- **Navigation & Routing:** GoRouter for declarative routing and deep linking support
+- **Dependency Injection:** GetIt service locator for clean dependency injection
+- **Backend & Cloud Services:**
   * **Firebase Authentication:** Secure sign-up/sign-in and session management
   * **Cloud Firestore:** Real-time NoSQL database for products, categories, and order processing
   * **Supabase Storage:** High-performance media hosting
-* **Local Data Persistence:** SharedPreferences & Hive
+- **Local Data Persistence:** SharedPreferences & Hive
 
 ---
 
 ## ✨ Key Features
 
-* 🔐 **Secure Authentication:** User sign-in/sign-up powered by Firebase Auth.
-* 🛍️ **Interactive Catalog:** Browse fruits by categories, fast search, and detailed product info.
-* 🛒 **Smart Shopping Cart:** Dynamic item quantity adjustment with real-time total calculation.
-* 💳 **Streamlined Checkout:** Fast order placement and delivery detail management.
-* ⚡ **Real-time Synchronization:** Instant catalog and price updates synced from the Admin Dashboard.
-* 🎨 **Responsive UI/UX:** Modern, pixel-perfect layouts designed for mobile screens.
+- 🔐 **Secure Authentication:** User sign-in/sign-up powered by Firebase Auth.
+- 🛍️ **Interactive Catalog:** Browse fruits by categories, fast search, and detailed product info.
+- 🛒 **Smart Shopping Cart:** Dynamic item quantity adjustment with real-time total calculation.
+- 💳 **Streamlined Checkout:** Fast order placement and delivery detail management.
+- 👤 **User Profile Management:** Dedicated interface for user details and account control.
+- ⚡ **Real-time Synchronization:** Instant catalog and price updates synced from the Admin Dashboard.
+- 🎨 **Responsive UI/UX:** Modern, pixel-perfect layouts designed for mobile screens.
 
 ---
 
@@ -76,5 +78,6 @@ lib/
 │   ├── auth/               # Authentication domain, data, and UI
 │   ├── home/               # Product discovery, categories, and main feed
 │   ├── cart/               # Cart state management and local persistence
-│   └── checkout/           # Order placement and checkout workflow
+│   ├── checkout/           # Order placement and checkout workflow
+│   └── profile/            # User profile management and settings
 └── main.dart               # App entry point
