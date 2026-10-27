@@ -36,7 +36,6 @@ The application is engineered prioritizing scalability, maintainability, and cod
   <img src="screenshots/screen6.jpg" width="130" alt="Checkout Flow" />
 </p>
 
-> **Note:** Screenshots are stored inside the `screenshots/` directory at the repository root and named `screen1.png` through `screen6.png`.
 
 ---
 
