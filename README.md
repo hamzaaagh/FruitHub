@@ -1,7 +1,7 @@
-# 🍏 FruitHUP — Premium E-Commerce Mobile Application
+# 🍏 FruitHUP — E-Commerce Mobile Application
 
 <p align="center">
-  <b>A modern, feature-rich cross-platform e-commerce application for ordering fresh fruits, built with Flutter and engineered using Clean Architecture best practices.</b>
+  <b>A modern, feature-rich cross-platform mobile application for ordering fresh fruits, built with Flutter and engineered using Clean Architecture best practices.</b>
 </p>
 
 <p align="center">
@@ -17,25 +17,26 @@
 
 ## 📌 Overview
 
-**FruitHUP** is a seamless cross-platform mobile e-commerce solution designed to deliver a smooth and intuitive fruit shopping experience. 
+**FruitHUP** is a seamless cross-platform mobile e-commerce solution designed to deliver a smooth and intuitive fruit shopping experience for end users. 
 
-The application is built from the ground up prioritizing scalability, maintainability, and testability. It adheres strictly to **Clean Architecture** principles, maintaining a clear separation of concerns across Data, Domain, and Presentation layers.
+The application is engineered prioritizing scalability, maintainability, and code testability. It adheres strictly to **Clean Architecture** principles, keeping a clear separation of concerns across Data, Domain, and Presentation layers.
+
+> 🔗 **Looking for the Management System?** Check out the [FruitHUP Admin Dashboard Repository](https://github.com/YOUR_USERNAME/FruitHUP-Admin) for product management and order controls.
 
 ---
 
 ## 📱 User Interface & Showcase
 
 <p align="center">
-  <img src="screenshots/screen1.png" width="130" alt="Onboarding Screen" /> &nbsp;
-  <img src="screenshots/screen2.png" width="130" alt="Authentication Screen" /> &nbsp;
-  <img src="screenshots/screen3.png" width="130" alt="Home Screen" /> &nbsp;
-  <img src="screenshots/screen4.png" width="130" alt="Product Details" /> &nbsp;
-  <img src="screenshots/screen5.png" width="130" alt="Cart Screen" /> &nbsp;
-  <img src="screenshots/screen6.png" width="130" alt="Checkout Flow" /> &nbsp;
-  <img src="screenshots/screen7.png" width="130" alt="Admin / Profile" />
+  <img src="screenshots/screen1.jpg" width="130" alt="Onboarding Screen" /> &nbsp;
+  <img src="screenshots/screen2.jpg" width="130" alt="Authentication Screen" /> &nbsp;
+  <img src="screenshots/screen3.jpg" width="130" alt="Home Screen" /> &nbsp;
+  <img src="screenshots/screen4.jpg" width="130" alt="Product Details" /> &nbsp;
+  <img src="screenshots/screen5.jpg" width="130" alt="Cart Screen" /> &nbsp;
+  <img src="screenshots/screen6.jpg" width="130" alt="Checkout Flow" />
 </p>
 
-> **Note:** Place your application screenshots inside a `screenshots/` directory in the repository root and name them `screen1.png` through `screen7.png` for them to display automatically.
+> **Note:** Screenshots are stored inside the `screenshots/` directory at the repository root and named `screen1.png` through `screen6.png`.
 
 ---
 
@@ -45,13 +46,13 @@ The core design follows enterprise-level mobile architecture standards:
 
 * **Framework:** [Flutter](https://flutter.dev/) (Dart)
 * **Architecture:** Clean Architecture (Data, Domain, Presentation layer separation)
-* **State Management:** BLoC / Cubit pattern for predictable state flow
+* **State Management:** BLoC / Cubit pattern for predictable state handling
 * **Navigation & Routing:** GoRouter for declarative routing and deep linking support
-* **Dependency Injection:** GetIt service locator for clean dependency management
+* **Dependency Injection:** GetIt service locator for clean dependency injection
 * **Backend & Cloud Services:**
-  * **Firebase Authentication:** Secure user sign-up and session handling
-  * **Cloud Firestore:** Real-time NoSQL database for store listings and orders
-  * **Supabase Storage:** High-performance media and asset hosting
+  * **Firebase Authentication:** Secure sign-up/sign-in and session management
+  * **Cloud Firestore:** Real-time NoSQL database for products, categories, and order processing
+  * **Supabase Storage:** High-performance media hosting
 * **Local Data Persistence:** SharedPreferences & Hive
 
 ---
@@ -59,11 +60,11 @@ The core design follows enterprise-level mobile architecture standards:
 ## ✨ Key Features
 
 * 🔐 **Secure Authentication:** User sign-in/sign-up powered by Firebase Auth.
-* 🛍️ **Interactive Catalog:** Browse fruits by categories, search items, and view detailed product info.
-* 🛒 **Smart Shopping Cart:** Dynamic item management with real-time tax and price calculations.
-* 💳 **Streamlined Checkout:** Fast and seamless order placement workflow.
-* 🖥️ **Admin Dashboard:** Dedicated interface for product creation, catalog management, and stock updates.
-* 🎨 **Responsive UI/UX:** Pixel-perfect, responsive layouts adhering to modern mobile UI design guidelines.
+* 🛍️ **Interactive Catalog:** Browse fruits by categories, fast search, and detailed product info.
+* 🛒 **Smart Shopping Cart:** Dynamic item quantity adjustment with real-time total calculation.
+* 💳 **Streamlined Checkout:** Fast order placement and delivery detail management.
+* ⚡ **Real-time Synchronization:** Instant catalog and price updates synced from the Admin Dashboard.
+* 🎨 **Responsive UI/UX:** Modern, pixel-perfect layouts designed for mobile screens.
 
 ---
 
@@ -73,9 +74,8 @@ The core design follows enterprise-level mobile architecture standards:
 lib/
 ├── core/                   # Utilities, constants, shared widgets, & theme configuration
 ├── features/
-│   ├── auth/               # Authentication domain, data, and presentation UI
-│   ├── home/               # Product discovery, categories, and main feeds
-│   ├── cart/               # Cart state management and persistence
-│   ├── checkout/           # Checkout steps and order submission
-│   └── admin/              # Admin dashboard and product management tools
+│   ├── auth/               # Authentication domain, data, and UI
+│   ├── home/               # Product discovery, categories, and main feed
+│   ├── cart/               # Cart state management and local persistence
+│   └── checkout/           # Order placement and checkout workflow
 └── main.dart               # App entry point
